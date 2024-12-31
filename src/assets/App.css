@@ -1,0 +1,25 @@
+.title{
+    background-color: brown;
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px;
+    justify-content: center;
+    /* background-image: url('../../public/download.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* height: 20vh; */
+}
+
+p{
+    text-transform: lowercase;
+    font-size: 16px;
+    font-weight: 300;
+    color:#fff;
+    background-color: black;
+    padding: 30px;
+    text-align: center;
+}
