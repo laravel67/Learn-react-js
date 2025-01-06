@@ -5,6 +5,7 @@ import EventHandler from "./EventHandler";
 import MyButton from "./MyButton";
 import SayHelloForm from "./SayHelloForm";
 import Counter from "./Counter";
+import AlertButton from "./AlertButton";
 
 function App() {
   // const text = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, perspiciatis?'
@@ -36,7 +37,8 @@ function App() {
       <EventHandler />
       <MyButton text="Smash Me" onSmash={() => alert('You has been Smash me!')} />
       <SayHelloForm />
-      <Counter/>
+      <Counter />
+      <AlertButton text={`asmans`} message={'Nilai Angka'}/>
     </Content>
   )
 }

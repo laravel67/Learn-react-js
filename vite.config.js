@@ -6,10 +6,16 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      index:    "index.htm  l",
-      contact:  "contact.html" ,
-      note:     "note.htm   l",
-      profile:  "profile.tml  ",      
+      input: {
+        index:    "index.html",
+        contact:  "contact.html" ,
+        note:     "note.html",
+        profile: "profile.html",
+        timer: "timer.html",
+        book: "book.html",
+        product: "product.html",
+        online:  "online.html",
+      }     
     }
   }
 })

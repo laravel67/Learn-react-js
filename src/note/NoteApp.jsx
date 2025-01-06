@@ -2,6 +2,7 @@
 import { useImmerReducer } from "use-immer";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
+import { NoteContext, NoteDispatchContext } from "./NoteContext";
 // import { useReducer } from "react";
 
 let id = 0;
@@ -78,66 +79,87 @@ function noteReducerImmer(draft, action) {
     }
 }
 
-export default function NoteApp() {
-    // const [notes, setNotes] = useImmer(initialNotes);
+// export default function NoteApp() {
+//     // const [notes, setNotes] = useImmer(initialNotes);
     
-    // function handleAddNote(text) {
-    //     setNotes((draft) => {
-    //         draft.push({
-    //             id: id++,
-    //             text: text,
-    //             done:false,
-    //         })
-    //     })
-    // }
+//     // function handleAddNote(text) {
+//     //     setNotes((draft) => {
+//     //         draft.push({
+//     //             id: id++,
+//     //             text: text,
+//     //             done:false,
+//     //         })
+//     //     })
+//     // }
 
-    // function handleChangeNote(note) {
-    //     setNotes((draft)=> {
-    //         const index = draft.findIndex(item => item.id === note.id);
-    //         draft[index] = note;
-    //     })
-    // }
+//     // function handleChangeNote(note) {
+//     //     setNotes((draft)=> {
+//     //         const index = draft.findIndex(item => item.id === note.id);
+//     //         draft[index] = note;
+//     //     })
+//     // }
 
-    // function handleDeleteNote(note) {
-    //     setNotes((draft) => {
-    //         const index = draft.findIndex(item => item.id===note.id);
-    //         draft.splice(index, 1);
-    //     })
-    // }
+//     // function handleDeleteNote(note) {
+//     //     setNotes((draft) => {
+//     //         const index = draft.findIndex(item => item.id===note.id);
+//     //         draft.splice(index, 1);
+//     //     })
+//     // }
 
+//     const [notes, dispatch] = useImmerReducer(noteReducerImmer, initialNotes)
+    
+//     function handleAddNote(text) {
+//         dispatch({
+//             type: 'ADD_NOTE',
+//             text:text
+//        })
+//     }
+
+//     function handleChangeNote(note) {
+//         dispatch({
+//             type: 'CHANGE_NOTE',
+//             id: note.id,
+//             text: note.text,
+//             done:note.done
+//         })
+//     }
+
+//     function handleDeleteNote(note) {
+//         dispatch({
+//             type: "DELETE_NOTE",
+//             id:note.id
+//        })
+//     }
+
+
+
+
+//     return (
+//         <div>
+//             <h1>Note App</h1>
+//             <NoteForm addOnNote={handleAddNote} />
+//             <NoteList notes={notes} onChange={handleChangeNote} onDelete={handleDeleteNote}/>
+//         </div>
+//     )
+
+
+// }
+
+
+// Menggunakan useContext
+
+export default function NoteApp() {
     const [notes, dispatch] = useImmerReducer(noteReducerImmer, initialNotes)
     
-    function handleAddNote(text) {
-        dispatch({
-            type: 'ADD_NOTE',
-            text:text
-       })
-    }
-
-    function handleChangeNote(note) {
-        dispatch({
-            type: 'CHANGE_NOTE',
-            id: note.id,
-            text: note.text,
-            done:note.done
-        })
-    }
-
-    function handleDeleteNote(note) {
-        dispatch({
-            type: "DELETE_NOTE",
-            id:note.id
-       })
-    }
-
-
-
-
     return (
         <div>
-            <h1>Note App</h1>
-            <NoteForm addOnNote={handleAddNote} />
-            <NoteList notes={notes} onChange={handleChangeNote} onDelete={handleDeleteNote}/>
+            <NoteContext.Provider value={notes}>
+                <NoteDispatchContext.Provider value={dispatch}>
+                    <h1>Note App</h1>
+                    <NoteForm  />
+                    <NoteList/>
+                </NoteDispatchContext.Provider>
+            </NoteContext.Provider>
         </div>
     )
 
